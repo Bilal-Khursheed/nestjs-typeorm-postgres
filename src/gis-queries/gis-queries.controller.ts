@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { GisQueriesService } from './gis-queries.service';
 
 @Controller('gis-queries')
@@ -6,7 +6,8 @@ export class GisQueriesController {
     constructor(private gisService: GisQueriesService) { }
 
     @Get('cities')
-    async fetchAllCities() {
-        return this.gisService.fetchAllCities()
+    async fetchAllCities(@Query() query) {
+        const { lngWest, latSouth, lngEast, latNorth } = query;
+        return this.gisService.fetchAllCities(lngWest, latSouth, lngEast, latNorth)
     }
 }
