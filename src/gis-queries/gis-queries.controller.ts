@@ -10,4 +10,9 @@ export class GisQueriesController {
         const { lngWest, latSouth, lngEast, latNorth } = query;
         return this.gisService.fetchAllCities(lngWest, latSouth, lngEast, latNorth)
     }
+    @Get('geojson')
+    async fetchCitiesGeoJson(@Query() query) {
+        const { lngWest, latSouth, lngEast, latNorth } = query;
+        return this.gisService.fetchAllCitiesGeoJson(lngWest, latSouth, lngEast, latNorth)
+    }
 }
